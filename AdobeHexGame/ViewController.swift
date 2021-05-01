@@ -12,8 +12,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        let randoms = CreateRandomTriplets()
+        let randomTriplets = CreateRandomTriplets()
         let grid = HexGrid()
+        grid.assignZs(triplets: randomTriplets.triplets)
     }
 
 

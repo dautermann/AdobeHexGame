@@ -7,7 +7,12 @@
 
 import Foundation
 
-class HexCell {
+struct Coordinate {
+    let x: Int
+    let y: Int
+}
+
+class HexCell: CustomStringConvertible {
     let x: Int
     let y: Int
     var value: Int = 0
@@ -15,6 +20,10 @@ class HexCell {
     var zPlaced: Bool = false
     var randomAdjacentCells: [HexCell]? {
         return adjacentCells?.shuffled()
+    }
+
+    var description: String {
+        return "<\(type(of: self)): x = \(x) y = \(y)>"
     }
 
     init(x: Int, y: Int) {
