@@ -56,4 +56,14 @@ class AdobeHexGameTests: XCTestCase {
         }
     }
 
+    func testGetNonExistentCell() throws {
+        let hexGrid = HexGrid(gridDisplayView: nil)
+
+        /// if I did a revision of the code where I set up the coordinate system via some other method,
+        /// this test would be useful to make sure we maintain the odd-r symmetry
+        if let _ = hexGrid.getCellWithCoordinate(col: 0, row: 0) {
+            XCTFail("there should be no visible cell with coordinates C0 R0")
+        }
+    }
+
 }

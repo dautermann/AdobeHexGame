@@ -98,7 +98,7 @@ class HexGrid {
             /// tile index is 1 through 6; 0 means unassigned
             for nthThree in 1...6 {
                 var finishedWithNth = false
-                var tryingToPlace: Int = 0
+                var attemptsToPlace: Int = 0
 
                 repeat {
                     let randomPlacement = Int.random(in: 0...18)
@@ -109,8 +109,8 @@ class HexGrid {
                     /// So this is brute force and if I had another day to think about how to do this properly, I bet I could come up
                     /// with a sexier approach. Anyways, what's happening here is that we've gone too long without
                     /// finding a place to place a cell with two empty adjacents, so we'll burn this grid down and start over
-                    tryingToPlace += 1
-                    if (tryingToPlace >= 50) {
+                    attemptsToPlace += 1
+                    if (attemptsToPlace >= 50) {
                         for eachCell in flattenedGrid {
                             eachCell.tileIndex = 0
                         }
