@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Triplet {
+struct Tile {
     let first: HexCell
     let second: HexCell
     let third: HexCell
@@ -16,9 +16,9 @@ struct Triplet {
 class HexGrid {
     weak var gridDisplayView: GridDisplayView?
     
-    // brute force set up grid of 19 cells
-    //
-    // “odd-r” horizontal layout shoves odd rows right
+    /// brute force set up grid of 19 cells
+    ///
+    /// “odd-r” horizontal layout shoves odd rows right
     let grid: [[HexCell]] =
         [[HexCell(col: 1, row: 0), HexCell(col: 2, row: 0), HexCell(col: 3, row: 0)],
          [HexCell(col: 0, row: 1), HexCell(col: 1, row: 1), HexCell(col: 2, row: 1), HexCell(col: 3, row: 1)],
@@ -26,6 +26,7 @@ class HexGrid {
          [HexCell(col: 0, row: 3), HexCell(col: 1, row: 3), HexCell(col: 2, row: 3), HexCell(col: 3, row: 3)],
          [HexCell(col: 1, row: 4), HexCell(col: 2, row: 4), HexCell(col: 3, row: 4)]]
 
+    /// flatten out the grid for easy reference when needed
     lazy var flattenedGrid: [HexCell] = {
         let flattenedGrid = Array(grid.joined())
         return flattenedGrid
@@ -59,6 +60,7 @@ class HexGrid {
         }
     }
 
+    /// leaving these functions around because they were so helpful with debugging
     func printTripletIndexGrid() {
         for row in 0...4 {
             var lineToPrint: String = ""
@@ -73,6 +75,7 @@ class HexGrid {
         }
     }
 
+    /// leaving these functions around because they were so helpful with debugging
     func printHexGrid() {
         for row in 0...4 {
             var lineToPrint: String = ""
@@ -88,11 +91,11 @@ class HexGrid {
     }
     
     /// divide the 19 circles into triples (and of course one is left over)
-    func reserveTriplets() -> [Triplet] {
-        var tripletArray = [Triplet]()
+    func reserveTiles() -> [Tile] {
+        var tileArray = [Tile]()
         var successfullyPlacedEverything = false
         repeat {
-            /// triplet index is 1 through 6; 0 means unassigned
+            /// tile index is 1 through 6; 0 means unassigned
             for nthThree in 1...6 {
                 var finishedWithNth = false
                 var tryingToPlace: Int = 0
@@ -102,8 +105,9 @@ class HexGrid {
                     let primaryCell = flattenedGrid[randomPlacement]
                     Swift.print("trying to place \(nthThree) to C\(primaryCell.col) R\(primaryCell.row)")
                     
-                    /// This is brute force and if I had another day to think about how to do this properly, I bet I could come up
-                    /// with an algorithmic solution.  Anyways, what's happening here is that we've gone too long without
+                    /// I wish I knew the correct set of keywords to use to GoOgLe up  a beautiful algorithmic solution.
+                    /// So this is brute force and if I had another day to think about how to do this properly, I bet I could come up
+                    /// with a sexier approach. Anyways, what's happening here is that we've gone too long without
                     /// finding a place to place a cell with two empty adjacents, so we'll burn this grid down and start over
                     tryingToPlace += 1
                     if (tryingToPlace >= 50) {
@@ -114,7 +118,7 @@ class HexGrid {
                         for eachCell in flattenedGrid {
                             eachCell.tripletIndex = 0
                         }
-                        tripletArray.removeAll()
+                        tileArray.removeAll()
                         finishedWithNth = true
                     } else {
                         var secondCell: HexCell? = nil
@@ -134,8 +138,8 @@ class HexGrid {
                                         Swift.print("\(nthThree) assigned to C\(primaryCell.col) R\(primaryCell.row); C\(secondCell?.col ?? -1) R\(secondCell?.row ?? -1); C\(potentialCell.col) R\(potentialCell.row)")
                                         printTripletIndexGrid()
                                         if let actualSecondCell = secondCell {
-                                            let newTriplet = Triplet(first: primaryCell, second: actualSecondCell, third: potentialCell)
-                                            tripletArray.append(newTriplet)
+                                            let newTriplet = Tile(first: primaryCell, second: actualSecondCell, third: potentialCell)
+                                            tileArray.append(newTriplet)
                                         }
                                         if nthThree == 6 {
                                             successfullyPlacedEverything = true
@@ -148,7 +152,7 @@ class HexGrid {
                                     }
                                 }
                             }
-                            // all neighbors assigned... we'll have to get another random placement to attempt a triplet
+                            // all neighbors assigned... we'll have to get another random placement to attempt a tile
                             if thirdCell == nil, let clearThisCell = secondCell {
                                 clearThisCell.tripletIndex = 0
                             }
@@ -157,17 +161,17 @@ class HexGrid {
                 } while (finishedWithNth == false)
             }
         } while (successfullyPlacedEverything == false)
-        return tripletArray
+        return tileArray
     }
       
     /// now that we have assigned three circles to tripletIndexes
-    /// distribute the actual X Y Z values to the triplet circles
-    func allocateRandoms(with randoms: CreateRandomXYZ , into tripletArray: [Triplet]) {
-        for (index,eachTriplet) in tripletArray.enumerated() {
+    /// distribute the actual X Y Z values to the tiles
+    func allocateRandoms(with randoms: CreateRandomXYZ , into tileArray: [Tile]) {
+        for (index,eachTile) in tileArray.enumerated() {
             let xyzToAssign = randoms.xyzs[index]
-            eachTriplet.first.value = xyzToAssign.x
-            eachTriplet.second.value = xyzToAssign.y
-            eachTriplet.third.value = xyzToAssign.z
+            eachTile.first.value = xyzToAssign.x
+            eachTile.second.value = xyzToAssign.y
+            eachTile.third.value = xyzToAssign.z
         }
         if let unallocatedCell = flattenedGrid.first(where: { $0.tripletIndex == 0 }) {
             unallocatedCell.value = randoms.bonus

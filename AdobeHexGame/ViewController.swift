@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         let randoms = CreateRandomXYZ()
         let grid = HexGrid(gridDisplayView: gridDisplayView)
-        let tripletArray = grid.reserveTriplets()
+        let tripletArray = grid.reserveTiles()
         grid.allocateRandoms(with: randoms, into: tripletArray)
     }
 

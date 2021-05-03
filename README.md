@@ -2,11 +2,13 @@
 
 Hexagonal grids are fun!
 
-The meat and potatoes of this project can be found in HexGrid.swift.  
+To try it out, I did most of my development/testing in iPhone simulators (e.g. iPhone 12 Pro, etc.); iPad simulators work but the circles come out looking like pillows :smiley:
 
-The view controller is essentially a placeholder (because if I'm feeling ambitous, I might actually turn this demo app into the actual game that was screenshotted in the exercise), but the flow of the app is essentially as follows:
-* The vc instantiates the HexGrid model, 
-* HexGrid's assigns columns and rows to the 19 HexCells (or circles), 
+The meat and potatoes of this project can be found in [HexGrid.swift](https://github.com/dautermann/AdobeHexGame/blob/main/AdobeHexGame/Model/HexGrid.swift).  
+
+The view controller is essentially a placeholder (because if I'm feeling ambitous, I could actually turn this demo app into an open source version of the actual game that was screenshotted in the exercise), but the flow of the app is essentially as follows:
+* The view controller instantiates the HexGrid model, 
+* HexGrid assigns columns and rows to the 19 HexCells (or circles), 
 * runs a neighbor determining algorithm on these cells, 
 * then comes up with tiles of three circles (which I originally named Triplets).
 * In the meantime, a "random" class comes up with random x & y's to derive Z's, plus one bonus number for the non-tiled left over circle.

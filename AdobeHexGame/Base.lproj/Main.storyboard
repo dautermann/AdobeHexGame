@@ -34,8 +34,8 @@
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="fUI-fM-F3Z" secondAttribute="height" multiplier="1:1" id="FOX-ix-UhJ"/>
-                                                            <constraint firstAttribute="height" constant="61" id="GQo-mb-IYf"/>
-                                                            <constraint firstAttribute="width" constant="61" id="JLW-33-t5v"/>
+                                                            <constraint firstAttribute="height" priority="900" constant="61" id="GQo-mb-IYf"/>
+                                                            <constraint firstAttribute="width" priority="900" constant="61" id="JLW-33-t5v"/>
                                                         </constraints>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="fontColor">
@@ -60,7 +60,6 @@
                                                     </view>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="61" id="0fQ-2t-nPv"/>
                                                     <constraint firstItem="Aj0-rh-00r" firstAttribute="height" secondItem="fUI-fM-F3Z" secondAttribute="height" id="AFp-Sy-heO"/>
                                                     <constraint firstItem="Aj0-rh-00r" firstAttribute="width" secondItem="fUI-fM-F3Z" secondAttribute="width" id="Hu6-rW-pkA"/>
                                                     <constraint firstItem="ZaT-U2-iy6" firstAttribute="width" secondItem="fUI-fM-F3Z" secondAttribute="width" id="Jt6-ep-c6S"/>
