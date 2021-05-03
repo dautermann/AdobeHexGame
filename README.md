@@ -2,7 +2,7 @@
 
 Hexagonal grids are fun!
 
-To try it out, I did most of my development/testing in iPhone simulators (e.g. iPhone 12 Pro, etc.); iPad simulators work but the circles come out looking like pillows :smiley:
+To try it out, I did most of my development/testing in iPhone simulators (e.g. iPhone 12 Pro, iPhone SE, etc.); iPad simulators work but if I hadn't disallowed iPads in the project settings, the circles come out looking like pillows :smiley:
 
 The meat and potatoes of this project can be found in [HexGrid.swift](https://github.com/dautermann/AdobeHexGame/blob/main/AdobeHexGame/Model/HexGrid.swift).  
 
@@ -17,3 +17,5 @@ The view controller is essentially a placeholder (because if I'm feeling ambitou
 To come up with the adjacent neighbor algorithm, I referred to this [extremely useful documentation](https://www.redblobgames.com/grids/hexagons/).  
 
 The kind of coordinate system I'm using can be referred to as [offset coordinates](https://www.redblobgames.com/grids/hexagons/#coordinates-offset). The odd rows are offset (and shoved right).  The [neighbor finding algorithm can be found here](https://www.redblobgames.com/grids/hexagons/#neighbors-offset).
+
+Added some tests, too!

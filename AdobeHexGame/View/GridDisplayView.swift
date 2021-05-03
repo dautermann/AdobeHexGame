@@ -20,7 +20,7 @@ class GridDisplayView: UIView {
         for (index,eachCircle) in grid.enumerated() {
             let circleView = gridCircleView[index]
             circleView.title.text = String(eachCircle.value)
-            circleView.fillColor = colors[eachCircle.tripletIndex]
+            circleView.fillColor = colors[eachCircle.tileIndex]
             circleView.setNeedsDisplay()
         }
     }

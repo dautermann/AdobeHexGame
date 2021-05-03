@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2519DD3A263FC3FA004C622E /* HexGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B88EDD2639127600F5F434 /* HexGrid.swift */; };
+		2519DD3E263FC410004C622E /* HexCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B88ED8263911D100F5F434 /* HexCell.swift */; };
+		2519DD42263FC441004C622E /* GridDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257B8CE9263ECDA200A2EA31 /* GridDisplayView.swift */; };
+		2519DD46263FC457004C622E /* CircleDrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257B8CFA263F838E00A2EA31 /* CircleDrawView.swift */; };
+		2519DD4A263FC4AB004C622E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B88EA92639119B00F5F434 /* ViewController.swift */; };
 		257B8CEA263ECDA200A2EA31 /* GridDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257B8CE9263ECDA200A2EA31 /* GridDisplayView.swift */; };
 		257B8CFB263F838F00A2EA31 /* CircleDrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257B8CFA263F838E00A2EA31 /* CircleDrawView.swift */; };
 		25B88EA62639119B00F5F434 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B88EA52639119B00F5F434 /* AppDelegate.swift */; };
@@ -302,7 +307,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2519DD4A263FC4AB004C622E /* ViewController.swift in Sources */,
 				25B88EBD2639119E00F5F434 /* AdobeHexGameTests.swift in Sources */,
+				2519DD3E263FC410004C622E /* HexCell.swift in Sources */,
+				2519DD46263FC457004C622E /* CircleDrawView.swift in Sources */,
+				2519DD3A263FC3FA004C622E /* HexGrid.swift in Sources */,
+				2519DD42263FC441004C622E /* GridDisplayView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,7 +490,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.myke.AdobeHexGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -499,7 +509,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.myke.AdobeHexGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

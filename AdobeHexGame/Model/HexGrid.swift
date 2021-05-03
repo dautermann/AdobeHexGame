@@ -32,7 +32,7 @@ class HexGrid {
         return flattenedGrid
     }()
 
-    init(gridDisplayView: GridDisplayView) {
+    init(gridDisplayView: GridDisplayView?) {
         setUpAdjacentCells()
         self.gridDisplayView = gridDisplayView
     }
@@ -56,17 +56,17 @@ class HexGrid {
                 }
             }
             cell.adjacentCells = adjacentCells
-            Swift.print("cell column \(cell.col) & row \(cell.row) has \(adjacentCells.count) adjacentCells \(adjacentCells)")
+            // Swift.print("cell column \(cell.col) & row \(cell.row) has \(adjacentCells.count) adjacentCells \(adjacentCells)")
         }
     }
 
     /// leaving these functions around because they were so helpful with debugging
-    func printTripletIndexGrid() {
+    func printTileIndexGrid() {
         for row in 0...4 {
             var lineToPrint: String = ""
             for column in 0...4 {
                 if let cell = getCellWithCoordinate(col: column, row: row) {
-                    lineToPrint.append("\(column) \(row) \(cell.tripletIndex) * ")
+                    lineToPrint.append("\(column) \(row) \(cell.tileIndex) * ")
                 } else {
                     lineToPrint.append("   * ")
                 }
@@ -103,7 +103,7 @@ class HexGrid {
                 repeat {
                     let randomPlacement = Int.random(in: 0...18)
                     let primaryCell = flattenedGrid[randomPlacement]
-                    Swift.print("trying to place \(nthThree) to C\(primaryCell.col) R\(primaryCell.row)")
+                    // Swift.print("trying to place \(nthThree) to C\(primaryCell.col) R\(primaryCell.row)")
                     
                     /// I wish I knew the correct set of keywords to use to GoOgLe up  a beautiful algorithmic solution.
                     /// So this is brute force and if I had another day to think about how to do this properly, I bet I could come up
@@ -111,32 +111,27 @@ class HexGrid {
                     /// finding a place to place a cell with two empty adjacents, so we'll burn this grid down and start over
                     tryingToPlace += 1
                     if (tryingToPlace >= 50) {
-                        Swift.print("hey!")
-                        if nthThree == 5 {
-                            Swift.print("WHY")
-                        }
                         for eachCell in flattenedGrid {
-                            eachCell.tripletIndex = 0
+                            eachCell.tileIndex = 0
                         }
                         tileArray.removeAll()
                         finishedWithNth = true
                     } else {
                         var secondCell: HexCell? = nil
                         var thirdCell: HexCell? = nil
-                        if primaryCell.tripletIndex == 0, let pCellAdjacentCells = primaryCell.randomAdjacentCells {
+                        if primaryCell.tileIndex == 0, let pCellAdjacentCells = primaryCell.randomAdjacentCells {
                             for potentialCell in pCellAdjacentCells {
-                                // Swift.print("checking col \(potentialCell.col) row \(potentialCell.row) has \(potentialCell.value) -- placedX \(placedX) placedY \(placedY)")
-                                if potentialCell.tripletIndex == 0 {
+                                if potentialCell.tileIndex == 0 {
                                     if secondCell == nil {
-                                        potentialCell.tripletIndex = nthThree
+                                        potentialCell.tileIndex = nthThree
                                         secondCell = potentialCell
                                     } else if thirdCell == nil {
-                                        potentialCell.tripletIndex = nthThree
+                                        potentialCell.tileIndex = nthThree
                                         thirdCell = potentialCell
                                         finishedWithNth = true
-                                        primaryCell.tripletIndex = nthThree
-                                        Swift.print("\(nthThree) assigned to C\(primaryCell.col) R\(primaryCell.row); C\(secondCell?.col ?? -1) R\(secondCell?.row ?? -1); C\(potentialCell.col) R\(potentialCell.row)")
-                                        printTripletIndexGrid()
+                                        primaryCell.tileIndex = nthThree
+                                        // Swift.print("\(nthThree) assigned to C\(primaryCell.col) R\(primaryCell.row); C\(secondCell?.col ?? -1) R\(secondCell?.row ?? -1); C\(potentialCell.col) R\(potentialCell.row)")
+                                        // printTileIndexGrid()
                                         if let actualSecondCell = secondCell {
                                             let newTriplet = Tile(first: primaryCell, second: actualSecondCell, third: potentialCell)
                                             tileArray.append(newTriplet)
@@ -144,17 +139,12 @@ class HexGrid {
                                         if nthThree == 6 {
                                             successfullyPlacedEverything = true
                                         }
-                                    } else {
-                                        // all neighbors assigned... we'll have to get another random placement to attempt a triplet
-        //                                Swift.print("all neighbors are assigned... get another random placement")
-        //                                Swift.print("NOPE")
-        //                                printTripletIndexGrid()
                                     }
                                 }
                             }
                             // all neighbors assigned... we'll have to get another random placement to attempt a tile
                             if thirdCell == nil, let clearThisCell = secondCell {
-                                clearThisCell.tripletIndex = 0
+                                clearThisCell.tileIndex = 0
                             }
                         }
                     }
@@ -164,7 +154,7 @@ class HexGrid {
         return tileArray
     }
       
-    /// now that we have assigned three circles to tripletIndexes
+    /// now that we have assigned three circles to tileIndexes
     /// distribute the actual X Y Z values to the tiles
     func allocateRandoms(with randoms: CreateRandomXYZ , into tileArray: [Tile]) {
         for (index,eachTile) in tileArray.enumerated() {
@@ -173,7 +163,7 @@ class HexGrid {
             eachTile.second.value = xyzToAssign.y
             eachTile.third.value = xyzToAssign.z
         }
-        if let unallocatedCell = flattenedGrid.first(where: { $0.tripletIndex == 0 }) {
+        if let unallocatedCell = flattenedGrid.first(where: { $0.tileIndex == 0 }) {
             unallocatedCell.value = randoms.bonus
         }
         if let gridDisplay = gridDisplayView {

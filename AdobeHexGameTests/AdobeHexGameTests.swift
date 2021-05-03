@@ -30,4 +30,30 @@ class AdobeHexGameTests: XCTestCase {
         }
     }
 
+    func testCountOfCells() throws {
+        let hexGrid = HexGrid(gridDisplayView: nil)
+
+        XCTAssert(hexGrid.flattenedGrid.count == 19, "should be 19 cells in the hex grid")
+    }
+
+    func testTopLeftAdjacentCells() throws {
+        let hexGrid = HexGrid(gridDisplayView: nil)
+
+        if let firstCell = hexGrid.getCellWithCoordinate(col: 1, row: 0) {
+            XCTAssert(firstCell.adjacentCells?.count == 3, "C 1 R 0 should have three adjacent cells")
+        } else {
+            XCTFail("no cell with C1 R0 found!")
+        }
+    }
+
+    func testMiddleAdjacentCells() throws {
+        let hexGrid = HexGrid(gridDisplayView: nil)
+
+        if let middleCell = hexGrid.getCellWithCoordinate(col: 2, row: 3) {
+            XCTAssert(middleCell.adjacentCells?.count == 6, "C2 R3 should be surrounded by 6 cells!")
+        } else {
+            XCTFail("no cell with C2 R3 found!")
+        }
+    }
+
 }
