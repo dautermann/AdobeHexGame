@@ -24,8 +24,15 @@ struct ColRow {
     let row: Int
 }
 
-class HexGrid {
+struct Triplet {
+    let first: HexCell
+    let second: HexCell
+    let third: HexCell
+}
 
+class HexGrid {
+    weak var gridDisplayView: GridDisplayView?
+    
     // brute force set up grid of 19 cells
     //
     // “odd-r” horizontal layout shoves odd rows right
@@ -41,8 +48,9 @@ class HexGrid {
         return flattenedGrid
     }()
 
-    init() {
+    init(gridDisplayView: GridDisplayView) {
         setUpAdjacentCells()
+        self.gridDisplayView = gridDisplayView
     }
 
     func getCellWithCoordinate(col: Int, row: Int) -> HexCell? {
@@ -98,118 +106,111 @@ class HexGrid {
             Swift.print("\(lineToPrint)")
         }
     }
+    
+    /// divide the 19 circles into triples (and of course one is left over)
+    func reserveTriplets() -> [Triplet] {
+        var tripletArray = [Triplet]()
+        var successfullyPlacedEverything = false
+        repeat {
+            /// triplet index is 1 through 6; 0 means unassigned
+            for nthThree in 1...6 {
+                var finishedWithNth = false
+                var tryingToPlace: Int = 0
 
-    func assignZs(triplets: [Triplet]) {
-
-        for nthThree in 1...6 {
-            var successfullyAssigned = false
-
-            repeat {
-                let randomPlacement = Int.random(in: 0...18)
-                let primaryCell = flattenedGrid[randomPlacement]
-                Swift.print("trying to place to C\(primaryCell.col) R\(primaryCell.row)")
-
-                var secondCell: HexCell? = nil
-                var thirdCell: HexCell? = nil
-                if primaryCell.tripletIndex == 0, let pCellAdjacentCells = primaryCell.randomAdjacentCells {
-                    for potentialCell in pCellAdjacentCells {
-                        // Swift.print("checking col \(potentialCell.col) row \(potentialCell.row) has \(potentialCell.value) -- placedX \(placedX) placedY \(placedY)")
-                        if potentialCell.tripletIndex == 0 {
-                            if secondCell == nil {
-                                potentialCell.tripletIndex = nthThree
-                                secondCell = potentialCell
-                            } else if thirdCell == nil {
-                                potentialCell.tripletIndex = nthThree
-                                thirdCell = potentialCell
-                                successfullyAssigned = true
-                                primaryCell.tripletIndex = nthThree
-                                Swift.print("\(nthThree) assigned to C\(primaryCell.col) R\(primaryCell.row); C\(secondCell?.col ?? -1) R\(secondCell?.row ?? -1); C\(potentialCell.col) R\(potentialCell.row)")
-                                printTripletIndexGrid()
-
-                            } else {
-                                // all neighbors assigned... we'll have to get another random placement to attempt a triplet
-//                                Swift.print("all neighbors are assigned... get another random placement")
-//                                Swift.print("NOPE")
-//                                printTripletIndexGrid()
-                            }
-                        }
-                    }
-                    // all neighbors assigned... we'll have to get another random placement to attempt a triplet
-                    if thirdCell == nil, let clearThisCell = secondCell {
-                        clearThisCell.tripletIndex = 0
-                    }
-                }
-            } while (successfullyAssigned == false)
-        }
-        Swift.print("WHOA GOT IT ALL")
-        printTripletIndexGrid()
-
-        return
-
-        for eachTriplet in triplets {
-            var successfullyPlaced = false
-
-            repeat {
-                var placedX = false
-                var placedY = false
-                let randomPlacement = Int.random(in: 0...18)
-                // assign z first
-                // then assign x & y to random adjacents
-                let zCell = flattenedGrid[randomPlacement]
-                if zCell.value == 0, let zCellAdjacentCells = zCell.randomAdjacentCells {
-                    // and if we find openings for x, y & z together, THEN assign all three and move on
-                    Swift.print("*** looking at col \(zCell.col) row \(zCell.row) to POTENTIALLY place \(eachTriplet.z)")
-                    for potentialCell in zCellAdjacentCells {
-                        // Swift.print("checking col \(potentialCell.col) row \(potentialCell.row) has \(potentialCell.value) -- placedX \(placedX) placedY \(placedY)")
-                        if potentialCell.value == 0 {
-                            if placedX == false {
-                                potentialCell.value = eachTriplet.x
-                                placedX = true
-                                Swift.print("placed x \(eachTriplet.x) into col \(potentialCell.col) row \(potentialCell.row)")
-                            } else if placedY == false {
-                                potentialCell.value = eachTriplet.y
-                                placedY = true
-                                Swift.print("placed y \(eachTriplet.y) into col \(potentialCell.col) row \(potentialCell.row)")
-                                break
-                            }
-                        }
-                    }
-                    if placedX == false && placedY == false {
-                        Swift.print("NOPE")
-                        printHexGrid()
-                    }
+                repeat {
+                    let randomPlacement = Int.random(in: 0...18)
+                    let primaryCell = flattenedGrid[randomPlacement]
+                    Swift.print("trying to place \(nthThree) to C\(primaryCell.col) R\(primaryCell.row)")
                     
-                    if placedX == true && placedY == true {
-                        Swift.print("placed z \(eachTriplet.z) into col \(zCell.col) row \(zCell.row)")
-                        successfullyPlaced = true
-                        zCell.value = eachTriplet.z
+                    /// This is brute force and if I had another day to think about how to do this properly, I bet I could come up
+                    /// with an algorithmic solution.  Anyways, what's happening here is that we've gone too long without
+                    /// finding a place to place a cell with two empty adjacents, so we'll burn this grid down and start over
+                    tryingToPlace += 1
+                    if (tryingToPlace >= 50) {
+                        Swift.print("hey!")
+                        if nthThree == 5 {
+                            Swift.print("WHY")
+                        }
+                        for eachCell in flattenedGrid {
+                            eachCell.tripletIndex = 0
+                        }
+                        tripletArray.removeAll()
+                        finishedWithNth = true
+                    } else {
+                        var secondCell: HexCell? = nil
+                        var thirdCell: HexCell? = nil
+                        if primaryCell.tripletIndex == 0, let pCellAdjacentCells = primaryCell.randomAdjacentCells {
+                            for potentialCell in pCellAdjacentCells {
+                                // Swift.print("checking col \(potentialCell.col) row \(potentialCell.row) has \(potentialCell.value) -- placedX \(placedX) placedY \(placedY)")
+                                if potentialCell.tripletIndex == 0 {
+                                    if secondCell == nil {
+                                        potentialCell.tripletIndex = nthThree
+                                        secondCell = potentialCell
+                                    } else if thirdCell == nil {
+                                        potentialCell.tripletIndex = nthThree
+                                        thirdCell = potentialCell
+                                        finishedWithNth = true
+                                        primaryCell.tripletIndex = nthThree
+                                        Swift.print("\(nthThree) assigned to C\(primaryCell.col) R\(primaryCell.row); C\(secondCell?.col ?? -1) R\(secondCell?.row ?? -1); C\(potentialCell.col) R\(potentialCell.row)")
+                                        printTripletIndexGrid()
+                                        if let actualSecondCell = secondCell {
+                                            let newTriplet = Triplet(first: primaryCell, second: actualSecondCell, third: potentialCell)
+                                            tripletArray.append(newTriplet)
+                                        }
+                                        if nthThree == 6 {
+                                            successfullyPlacedEverything = true
+                                        }
+                                    } else {
+                                        // all neighbors assigned... we'll have to get another random placement to attempt a triplet
+        //                                Swift.print("all neighbors are assigned... get another random placement")
+        //                                Swift.print("NOPE")
+        //                                printTripletIndexGrid()
+                                    }
+                                }
+                            }
+                            // all neighbors assigned... we'll have to get another random placement to attempt a triplet
+                            if thirdCell == nil, let clearThisCell = secondCell {
+                                clearThisCell.tripletIndex = 0
+                            }
+                        }
                     }
-
-                }
-            } while (successfullyPlaced == false)
-
-        }
-        Swift.print("all done placing")
+                } while (finishedWithNth == false)
+            }
+        } while (successfullyPlacedEverything == false)
+        return tripletArray
     }
-
+      
+    /// now that we have assigned three circles to tripletIndexes
+    /// distribute the actual triplet values
+    func allocateXYZ(xyzArray: [XYZ], into tripletArray: [Triplet]) {
+        for (index,eachTriplet) in tripletArray.enumerated() {
+            let xyzToAssign = xyzArray[index]
+            eachTriplet.first.value = xyzToAssign.x
+            eachTriplet.second.value = xyzToAssign.y
+            eachTriplet.third.value = xyzToAssign.z
+        }
+        if let gridDisplay = gridDisplayView {
+            gridDisplay.updateGridDisplay(from: flattenedGrid)
+        }
+    }
 }
 
-struct Triplet {
+struct XYZ {
     let x: Int
     let y: Int
     let z: Int
 }
 
-class CreateRandomTriplets {
+class CreateRandomXYZ {
     var bonus = Int.random(in: 1...999)
-    var triplets = [Triplet]()
+    var xyzs = [XYZ]()
     init() {
         for _ in 0...5 {
             let x = Int.random(in: 1...50)
             let y = Int.random(in: 1...19)
             let z = x * y
-            let newTriplet = Triplet(x: x, y: y, z: z)
-            triplets.append(newTriplet)
+            let newXYZ = XYZ(x: x, y: y, z: z)
+            xyzs.append(newXYZ)
             Swift.print("\(x) * \(y) = \(z)")
         }
         Swift.print("\(bonus)")

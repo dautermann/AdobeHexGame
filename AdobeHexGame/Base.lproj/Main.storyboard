@@ -16,16 +16,225 @@
                         <rect key="frame" x="0.0" y="0.0" width="926" height="428"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K8w-Mt-r7F">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K8w-Mt-r7F" customClass="GridDisplayView" customModule="AdobeHexGame" customModuleProvider="target">
                                 <rect key="frame" x="77" y="34" width="785" height="339"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o7P-Tr-kdU" customClass="CircleDrawView" customModule="AdobeHexGame" customModuleProvider="target">
-                                        <rect key="frame" x="17" y="14" width="240" height="128"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="U27-VX-iYb">
+                                        <rect key="frame" x="2" y="2" width="443" height="335"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="33" translatesAutoresizingMaskIntoConstraints="NO" id="dMx-ta-P2Z">
+                                                <rect key="frame" x="95.333333333333329" y="0.0" width="252.33333333333337" height="62.333333333333336"/>
+                                                <subviews>
+                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o7P-Tr-kdU" customClass="CircleDrawView" customModule="AdobeHexGame" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="62.333333333333336"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fUI-fM-F3Z" customClass="CircleDrawView" customModule="AdobeHexGame" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="62" height="62.333333333333336"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="fUI-fM-F3Z" secondAttribute="height" multiplier="1:1" id="FOX-ix-UhJ"/>
+                                                            <constraint firstAttribute="height" constant="61" id="GQo-mb-IYf"/>
+                                                            <constraint firstAttribute="width" constant="61" id="JLW-33-t5v"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="fontColor">
+                                                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderSize">
+                                                                <real key="value" value="4"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZaT-U2-iy6" customClass="CircleDrawView" customModule="AdobeHexGame" customModuleProvider="target">
+                                                        <rect key="frame" x="94.999999999999972" y="0.0" width="62.333333333333343" height="62.333333333333336"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aj0-rh-00r" customClass="CircleDrawView" customModule="AdobeHexGame" customModuleProvider="target">
+                                                        <rect key="frame" x="190.33333333333334" y="0.0" width="62" height="62.333333333333336"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </view>
+                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nqR-gc-7fk" customClass="CircleDrawView" customModule="AdobeHexGame" customModuleProvider="target">
+                                                        <rect key="frame" x="252.33333333333334" y="0.0" width="0.0" height="62.333333333333336"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    </view>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="61" id="0fQ-2t-nPv"/>
+                                                    <constraint firstItem="Aj0-rh-00r" firstAttribute="height" secondItem="fUI-fM-F3Z" secondAttribute="height" id="AFp-Sy-heO"/>
+                                                    <constraint firstItem="Aj0-rh-00r" firstAttribute="width" secondItem="fUI-fM-F3Z" secondAttribute="width" id="Hu6-rW-pkA"/>
+                                                    <constraint firstItem="ZaT-U2-iy6" firstAttribute="width" secondItem="fUI-fM-F3Z" secondAttribute="width" id="Jt6-ep-c6S"/>
+                                                    <constraint firstItem="ZaT-U2-iy6" firstAttribute="height" secondItem="fUI-fM-F3Z" secondAttribute="height" id="ylx-FT-pA6"/>
+                                                </constraints>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="top" spacing="38" translatesAutoresizingMaskIntoConstraints="NO" id="75u-pv-hJB">
+                                                <rect key="frame" x="40" y="68.333333333333329" width="363" height="61.999999999999986"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bdQ-fI-Vfv" customClass="CircleDrawView" customModule="AdobeHexGame" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="62.333333333333336" height="62"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sk4-bv-jvx" customClass="CircleDrawView" customModule="AdobeHexGame" customModuleProvider="target">
+                                                        <rect key="frame" x="100.33333333333333" y="0.0" width="62.333333333333329" height="62"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="91J-R7-5wQ" customClass="CircleDrawView" customModule="AdobeHexGame" customModuleProvider="target">
+                                                        <rect key="frame" x="200.66666666666669" y="0.0" width="62" height="62"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bOr-xQ-iy5" customClass="CircleDrawView" customModule="AdobeHexGame" customModuleProvider="target">
+                                                        <rect key="frame" x="300.66666666666669" y="0.0" width="62.333333333333314" height="62"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="top" spacing="33" translatesAutoresizingMaskIntoConstraints="NO" id="GKY-cY-eS0">
+                                                <rect key="frame" x="0.0" y="136.33333333333334" width="443" height="62.333333333333343"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sfk-yt-9yY" customClass="CircleDrawView" customModule="AdobeHexGame" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="62.333333333333336" height="61"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q9H-9z-BPv" customClass="CircleDrawView" customModule="AdobeHexGame" customModuleProvider="target">
+                                                        <rect key="frame" x="95.333333333333343" y="0.0" width="62" height="62.333333333333336"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qsz-39-er2" customClass="CircleDrawView" customModule="AdobeHexGame" customModuleProvider="target">
+                                                        <rect key="frame" x="190.33333333333331" y="0.0" width="62.333333333333343" height="61"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L0i-bK-gYz" customClass="CircleDrawView" customModule="AdobeHexGame" customModuleProvider="target">
+                                                        <rect key="frame" x="285.66666666666669" y="0.0" width="62" height="61"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WQ3-1o-Rit" customClass="CircleDrawView" customModule="AdobeHexGame" customModuleProvider="target">
+                                                        <rect key="frame" x="380.66666666666669" y="0.0" width="62.333333333333314" height="61"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="top" spacing="38" translatesAutoresizingMaskIntoConstraints="NO" id="uDO-QR-YPJ">
+                                                <rect key="frame" x="40" y="204.66666666666666" width="363" height="61.999999999999972"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qBA-I3-TCn" customClass="CircleDrawView" customModule="AdobeHexGame" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="62.333333333333336" height="62"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a0F-sF-cVO" customClass="CircleDrawView" customModule="AdobeHexGame" customModuleProvider="target">
+                                                        <rect key="frame" x="100.33333333333333" y="0.0" width="62.333333333333329" height="62"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MMJ-RX-Rdl" customClass="CircleDrawView" customModule="AdobeHexGame" customModuleProvider="target">
+                                                        <rect key="frame" x="200.66666666666669" y="0.0" width="62" height="62"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fLM-qx-GlP" customClass="CircleDrawView" customModule="AdobeHexGame" customModuleProvider="target">
+                                                        <rect key="frame" x="300.66666666666669" y="0.0" width="62.333333333333314" height="62"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="top" spacing="33" translatesAutoresizingMaskIntoConstraints="NO" id="tey-Zw-StQ">
+                                                <rect key="frame" x="95.333333333333329" y="272.66666666666669" width="252.33333333333337" height="62.333333333333314"/>
+                                                <subviews>
+                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qzk-pr-kVj" customClass="CircleDrawView" customModule="AdobeHexGame" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="61"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hpf-AT-a5O" customClass="CircleDrawView" customModule="AdobeHexGame" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="62" height="61"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Puq-9F-4bN" customClass="CircleDrawView" customModule="AdobeHexGame" customModuleProvider="target">
+                                                        <rect key="frame" x="94.999999999999972" y="0.0" width="62.333333333333343" height="61"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cgl-gH-nu0" customClass="CircleDrawView" customModule="AdobeHexGame" customModuleProvider="target">
+                                                        <rect key="frame" x="190.33333333333334" y="0.0" width="62" height="61"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </view>
+                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vIX-to-QCs" customClass="CircleDrawView" customModule="AdobeHexGame" customModuleProvider="target">
+                                                        <rect key="frame" x="252.33333333333334" y="0.0" width="0.0" height="61"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="tey-Zw-StQ" firstAttribute="height" secondItem="dMx-ta-P2Z" secondAttribute="height" id="0aH-ZU-qJQ"/>
+                                            <constraint firstItem="WQ3-1o-Rit" firstAttribute="height" secondItem="fUI-fM-F3Z" secondAttribute="height" multiplier="0.97861" id="10h-eR-tJg"/>
+                                            <constraint firstItem="a0F-sF-cVO" firstAttribute="height" secondItem="fUI-fM-F3Z" secondAttribute="height" id="18G-yv-b8N"/>
+                                            <constraint firstItem="bOr-xQ-iy5" firstAttribute="height" secondItem="fUI-fM-F3Z" secondAttribute="height" id="9nA-bU-kY9"/>
+                                            <constraint firstItem="hpf-AT-a5O" firstAttribute="height" secondItem="fUI-fM-F3Z" secondAttribute="height" multiplier="0.97861" id="B5O-7B-eXe"/>
+                                            <constraint firstItem="q9H-9z-BPv" firstAttribute="width" secondItem="fUI-fM-F3Z" secondAttribute="width" id="Cju-lO-Gea"/>
+                                            <constraint firstItem="75u-pv-hJB" firstAttribute="centerX" secondItem="U27-VX-iYb" secondAttribute="centerX" id="Cqm-h9-UnY"/>
+                                            <constraint firstItem="WQ3-1o-Rit" firstAttribute="width" secondItem="fUI-fM-F3Z" secondAttribute="width" id="DEw-fC-zBc"/>
+                                            <constraint firstItem="a0F-sF-cVO" firstAttribute="width" secondItem="fUI-fM-F3Z" secondAttribute="width" id="Efg-m5-803"/>
+                                            <constraint firstItem="bOr-xQ-iy5" firstAttribute="width" secondItem="fUI-fM-F3Z" secondAttribute="width" id="F1n-ds-Wnf"/>
+                                            <constraint firstAttribute="bottom" secondItem="tey-Zw-StQ" secondAttribute="bottom" id="IW8-VE-DiN"/>
+                                            <constraint firstItem="Sk4-bv-jvx" firstAttribute="height" secondItem="fUI-fM-F3Z" secondAttribute="height" id="Kzs-aE-05R"/>
+                                            <constraint firstItem="uDO-QR-YPJ" firstAttribute="centerX" secondItem="U27-VX-iYb" secondAttribute="centerX" id="L8V-wr-ik8"/>
+                                            <constraint firstItem="L0i-bK-gYz" firstAttribute="height" secondItem="fUI-fM-F3Z" secondAttribute="height" multiplier="0.97861" id="LoI-mB-5PF"/>
+                                            <constraint firstItem="MMJ-RX-Rdl" firstAttribute="height" secondItem="fUI-fM-F3Z" secondAttribute="height" id="My3-og-AlI"/>
+                                            <constraint firstItem="qBA-I3-TCn" firstAttribute="height" secondItem="fUI-fM-F3Z" secondAttribute="height" id="Nvb-hq-aJU"/>
+                                            <constraint firstItem="MMJ-RX-Rdl" firstAttribute="width" secondItem="fUI-fM-F3Z" secondAttribute="width" id="QOE-fz-cQJ"/>
+                                            <constraint firstItem="Qsz-39-er2" firstAttribute="width" secondItem="fUI-fM-F3Z" secondAttribute="width" id="QcK-cS-kFp"/>
+                                            <constraint firstItem="Cgl-gH-nu0" firstAttribute="width" secondItem="fUI-fM-F3Z" secondAttribute="width" id="Qdw-0x-GUt"/>
+                                            <constraint firstItem="bdQ-fI-Vfv" firstAttribute="height" secondItem="fUI-fM-F3Z" secondAttribute="height" id="QpS-2N-JML"/>
+                                            <constraint firstItem="qBA-I3-TCn" firstAttribute="width" secondItem="fUI-fM-F3Z" secondAttribute="width" id="RQn-3w-dvG"/>
+                                            <constraint firstItem="q9H-9z-BPv" firstAttribute="height" secondItem="fUI-fM-F3Z" secondAttribute="height" id="RYH-q4-YGN"/>
+                                            <constraint firstItem="Puq-9F-4bN" firstAttribute="width" secondItem="fUI-fM-F3Z" secondAttribute="width" id="UL4-Vm-WDd"/>
+                                            <constraint firstItem="Puq-9F-4bN" firstAttribute="height" secondItem="fUI-fM-F3Z" secondAttribute="height" multiplier="0.97861" id="Uu1-pJ-dhV"/>
+                                            <constraint firstItem="bdQ-fI-Vfv" firstAttribute="width" secondItem="fUI-fM-F3Z" secondAttribute="width" id="VyN-aK-BXl"/>
+                                            <constraint firstItem="GKY-cY-eS0" firstAttribute="centerX" secondItem="U27-VX-iYb" secondAttribute="centerX" id="WVa-KJ-Oa9"/>
+                                            <constraint firstItem="dMx-ta-P2Z" firstAttribute="centerX" secondItem="U27-VX-iYb" secondAttribute="centerX" id="brR-FE-aBL"/>
+                                            <constraint firstItem="Sk4-bv-jvx" firstAttribute="width" secondItem="fUI-fM-F3Z" secondAttribute="width" id="cdM-OL-8Tj"/>
+                                            <constraint firstItem="91J-R7-5wQ" firstAttribute="width" secondItem="fUI-fM-F3Z" secondAttribute="width" id="ems-TL-clH"/>
+                                            <constraint firstItem="Cgl-gH-nu0" firstAttribute="height" secondItem="fUI-fM-F3Z" secondAttribute="height" multiplier="0.97861" id="etp-cN-ZdZ"/>
+                                            <constraint firstItem="L0i-bK-gYz" firstAttribute="width" secondItem="fUI-fM-F3Z" secondAttribute="width" id="ev7-lg-BWx"/>
+                                            <constraint firstItem="Qsz-39-er2" firstAttribute="height" secondItem="fUI-fM-F3Z" secondAttribute="height" multiplier="0.97861" id="g6N-m0-WEU"/>
+                                            <constraint firstItem="91J-R7-5wQ" firstAttribute="height" secondItem="fUI-fM-F3Z" secondAttribute="height" id="l7F-iE-LGl"/>
+                                            <constraint firstItem="fLM-qx-GlP" firstAttribute="width" secondItem="fUI-fM-F3Z" secondAttribute="width" id="lUe-a1-UEM"/>
+                                            <constraint firstItem="GKY-cY-eS0" firstAttribute="height" secondItem="dMx-ta-P2Z" secondAttribute="height" id="nE8-oc-KoH"/>
+                                            <constraint firstItem="fLM-qx-GlP" firstAttribute="height" secondItem="fUI-fM-F3Z" secondAttribute="height" id="nMD-8W-cgw"/>
+                                            <constraint firstItem="Sfk-yt-9yY" firstAttribute="width" secondItem="fUI-fM-F3Z" secondAttribute="width" id="nal-HQ-Sms"/>
+                                            <constraint firstItem="dMx-ta-P2Z" firstAttribute="top" secondItem="U27-VX-iYb" secondAttribute="top" id="qBj-az-jTm"/>
+                                            <constraint firstItem="uDO-QR-YPJ" firstAttribute="height" secondItem="dMx-ta-P2Z" secondAttribute="height" id="sjy-Sd-ZWk"/>
+                                            <constraint firstItem="tey-Zw-StQ" firstAttribute="centerX" secondItem="U27-VX-iYb" secondAttribute="centerX" id="tqp-wi-zpW"/>
+                                            <constraint firstItem="75u-pv-hJB" firstAttribute="height" secondItem="dMx-ta-P2Z" secondAttribute="height" id="uh0-eA-5fJ"/>
+                                            <constraint firstItem="Sfk-yt-9yY" firstAttribute="height" secondItem="fUI-fM-F3Z" secondAttribute="height" multiplier="0.97861" id="y0C-Eg-3Eu"/>
+                                            <constraint firstItem="hpf-AT-a5O" firstAttribute="width" secondItem="fUI-fM-F3Z" secondAttribute="width" id="zw0-tW-qqR"/>
+                                        </constraints>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="U27-VX-iYb" secondAttribute="bottom" constant="2" id="P9A-Bv-Px2"/>
+                                    <constraint firstItem="U27-VX-iYb" firstAttribute="leading" secondItem="K8w-Mt-r7F" secondAttribute="leading" constant="2" id="gdF-41-x4W"/>
+                                    <constraint firstItem="U27-VX-iYb" firstAttribute="top" secondItem="K8w-Mt-r7F" secondAttribute="top" constant="2" id="rgy-l1-lXz"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gridCircleView" destination="fUI-fM-F3Z" collectionClass="NSMutableArray" id="t2O-6P-0Bh"/>
+                                    <outletCollection property="gridCircleView" destination="ZaT-U2-iy6" collectionClass="NSMutableArray" id="Aqt-O8-GJo"/>
+                                    <outletCollection property="gridCircleView" destination="Aj0-rh-00r" collectionClass="NSMutableArray" id="fz3-D0-HWE"/>
+                                    <outletCollection property="gridCircleView" destination="bdQ-fI-Vfv" collectionClass="NSMutableArray" id="OdL-ux-Ad6"/>
+                                    <outletCollection property="gridCircleView" destination="Sk4-bv-jvx" collectionClass="NSMutableArray" id="MrZ-UP-ONM"/>
+                                    <outletCollection property="gridCircleView" destination="91J-R7-5wQ" collectionClass="NSMutableArray" id="tOe-YQ-NQK"/>
+                                    <outletCollection property="gridCircleView" destination="bOr-xQ-iy5" collectionClass="NSMutableArray" id="HUy-Tf-k3W"/>
+                                    <outletCollection property="gridCircleView" destination="Sfk-yt-9yY" collectionClass="NSMutableArray" id="dfx-XO-NKA"/>
+                                    <outletCollection property="gridCircleView" destination="q9H-9z-BPv" collectionClass="NSMutableArray" id="ana-T3-Rm1"/>
+                                    <outletCollection property="gridCircleView" destination="Qsz-39-er2" collectionClass="NSMutableArray" id="Z3M-3d-6ZX"/>
+                                    <outletCollection property="gridCircleView" destination="L0i-bK-gYz" collectionClass="NSMutableArray" id="AdU-oK-Q33"/>
+                                    <outletCollection property="gridCircleView" destination="WQ3-1o-Rit" collectionClass="NSMutableArray" id="0V8-Fd-CG7"/>
+                                    <outletCollection property="gridCircleView" destination="qBA-I3-TCn" collectionClass="NSMutableArray" id="dBK-A9-12A"/>
+                                    <outletCollection property="gridCircleView" destination="a0F-sF-cVO" collectionClass="NSMutableArray" id="bdZ-uT-p5g"/>
+                                    <outletCollection property="gridCircleView" destination="MMJ-RX-Rdl" collectionClass="NSMutableArray" id="8lw-hW-OLV"/>
+                                    <outletCollection property="gridCircleView" destination="fLM-qx-GlP" collectionClass="NSMutableArray" id="G3X-No-NQH"/>
+                                    <outletCollection property="gridCircleView" destination="hpf-AT-a5O" collectionClass="NSMutableArray" id="NJ3-iD-aCU"/>
+                                    <outletCollection property="gridCircleView" destination="Puq-9F-4bN" collectionClass="NSMutableArray" id="37G-ru-f7q"/>
+                                    <outletCollection property="gridCircleView" destination="Cgl-gH-nu0" collectionClass="NSMutableArray" id="89M-Fg-Pzf"/>
+                                </connections>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -37,10 +246,13 @@
                             <constraint firstItem="K8w-Mt-r7F" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="33" id="zsL-Cm-9iG"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="gridDisplayView" destination="K8w-Mt-r7F" id="Ccx-Sf-WNQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-6" y="125"/>
+            <point key="canvasLocation" x="-6.4794816414686833" y="124.7663551401869"/>
         </scene>
     </scenes>
     <resources>

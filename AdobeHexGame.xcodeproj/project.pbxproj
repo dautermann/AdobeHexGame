@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		257B8CEA263ECDA200A2EA31 /* GridDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257B8CE9263ECDA200A2EA31 /* GridDisplayView.swift */; };
+		257B8CFB263F838F00A2EA31 /* CircleDrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257B8CFA263F838E00A2EA31 /* CircleDrawView.swift */; };
 		25B88EA62639119B00F5F434 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B88EA52639119B00F5F434 /* AppDelegate.swift */; };
 		25B88EA82639119B00F5F434 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B88EA72639119B00F5F434 /* SceneDelegate.swift */; };
 		25B88EAA2639119B00F5F434 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B88EA92639119B00F5F434 /* ViewController.swift */; };
@@ -37,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		257B8CE9263ECDA200A2EA31 /* GridDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridDisplayView.swift; sourceTree = "<group>"; };
+		257B8CFA263F838E00A2EA31 /* CircleDrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleDrawView.swift; sourceTree = "<group>"; };
 		25B88EA22639119B00F5F434 /* AdobeHexGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdobeHexGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25B88EA52639119B00F5F434 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		25B88EA72639119B00F5F434 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -104,12 +108,14 @@
 			isa = PBXGroup;
 			children = (
 				25B88EA52639119B00F5F434 /* AppDelegate.swift */,
+				257B8CFA263F838E00A2EA31 /* CircleDrawView.swift */,
 				25B88EA72639119B00F5F434 /* SceneDelegate.swift */,
 				25B88EA92639119B00F5F434 /* ViewController.swift */,
 				25B88EAB2639119B00F5F434 /* Main.storyboard */,
 				25B88EAE2639119D00F5F434 /* Assets.xcassets */,
 				25B88EB02639119D00F5F434 /* LaunchScreen.storyboard */,
 				25B88EB32639119D00F5F434 /* Info.plist */,
+				257B8CE9263ECDA200A2EA31 /* GridDisplayView.swift */,
 				25B88ED8263911D100F5F434 /* HexCell.swift */,
 				25B88EDD2639127600F5F434 /* HexGrid.swift */,
 			);
@@ -265,6 +271,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				25B88EAA2639119B00F5F434 /* ViewController.swift in Sources */,
+				257B8CEA263ECDA200A2EA31 /* GridDisplayView.swift in Sources */,
+				257B8CFB263F838F00A2EA31 /* CircleDrawView.swift in Sources */,
 				25B88EDE2639127600F5F434 /* HexGrid.swift in Sources */,
 				25B88ED9263911D100F5F434 /* HexCell.swift in Sources */,
 				25B88EA62639119B00F5F434 /* AppDelegate.swift in Sources */,
