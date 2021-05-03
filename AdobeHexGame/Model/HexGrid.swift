@@ -7,23 +7,6 @@
 
 import Foundation
 
-enum Parity {
-    case even, odd
-
-    init<T>(_ integer: T) where T : BinaryInteger {
-        self = integer.isMultiple(of: 2) ? .even : .odd
-    }
-}
-
-extension BinaryInteger {
-    var parity: Parity { Parity(self) }
-}
-
-struct ColRow {
-    let col: Int
-    let row: Int
-}
-
 struct Triplet {
     let first: HexCell
     let second: HexCell
@@ -59,14 +42,11 @@ class HexGrid {
 
     func setUpAdjacentCells() {
         let oddr_directions: [[ColRow]] = [[ColRow(col: 1, row: 0), ColRow( col: 0, row: -1), ColRow(col: -1, row: -1),
-                                         ColRow(col: -1, row: 0), ColRow(col: -1, row: +1), ColRow(col: 0, row: 1)],
-                                        [ColRow(col: 1, row: 0), ColRow( col: 1, row: -1), ColRow(col: 0, row: -1),
-                                          ColRow(col: -1, row: 0), ColRow(col: 0, row: +1), ColRow(col: 1, row: 1)]]
+                                            ColRow(col: -1, row: 0), ColRow(col: -1, row: +1), ColRow(col: 0, row: 1)],
+                                           [ColRow(col: 1, row: 0), ColRow( col: 1, row: -1), ColRow(col: 0, row: -1),
+                                            ColRow(col: -1, row: 0), ColRow(col: 0, row: +1), ColRow(col: 1, row: 1)]]
         for cell in flattenedGrid {
             var adjacentCells = [HexCell]()
-            if cell.col == 2 && cell.row == 4 {
-                Swift.print("col 2 row 4")
-            }
             for eachDirection in oddr_directions[cell.row.parity == .even ? 0 : 1] {
                 let offsetCol = cell.col + eachDirection.col
                 let offsetRow = cell.row + eachDirection.row
@@ -181,13 +161,16 @@ class HexGrid {
     }
       
     /// now that we have assigned three circles to tripletIndexes
-    /// distribute the actual triplet values
-    func allocateXYZ(xyzArray: [XYZ], into tripletArray: [Triplet]) {
+    /// distribute the actual X Y Z values to the triplet circles
+    func allocateRandoms(with randoms: CreateRandomXYZ , into tripletArray: [Triplet]) {
         for (index,eachTriplet) in tripletArray.enumerated() {
-            let xyzToAssign = xyzArray[index]
+            let xyzToAssign = randoms.xyzs[index]
             eachTriplet.first.value = xyzToAssign.x
             eachTriplet.second.value = xyzToAssign.y
             eachTriplet.third.value = xyzToAssign.z
+        }
+        if let unallocatedCell = flattenedGrid.first(where: { $0.tripletIndex == 0 }) {
+            unallocatedCell.value = randoms.bonus
         }
         if let gridDisplay = gridDisplayView {
             gridDisplay.updateGridDisplay(from: flattenedGrid)
@@ -201,18 +184,31 @@ struct XYZ {
     let z: Int
 }
 
+/// class that creates random things used in the hexagonal grid
 class CreateRandomXYZ {
-    var bonus = Int.random(in: 1...999)
+    var bonus = Int.random(in: 1...950)
     var xyzs = [XYZ]()
     init() {
         for _ in 0...5 {
             let x = Int.random(in: 1...50)
             let y = Int.random(in: 1...19)
-            let z = x * y
+            let z = x * y /// I didn't want to display four digits in a circle, so our highest possible maximum is 50 * 19 = 950
             let newXYZ = XYZ(x: x, y: y, z: z)
             xyzs.append(newXYZ)
-            Swift.print("\(x) * \(y) = \(z)")
         }
-        Swift.print("\(bonus)")
     }
+}
+
+/// if you made it down this far, this handy extension is to easily switch on whether an integer is even or odd
+/// (useful for determining what to do with adjacent neighbor calculations)
+enum Parity {
+    case even, odd
+
+    init<T>(_ integer: T) where T : BinaryInteger {
+        self = integer.isMultiple(of: 2) ? .even : .odd
+    }
+}
+
+extension BinaryInteger {
+    var parity: Parity { Parity(self) }
 }

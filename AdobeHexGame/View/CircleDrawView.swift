@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// this code comes via https://stackoverflow.com/a/54620679/981049
 @IBDesignable
 class CircleDrawView: UIView {
 
@@ -19,7 +20,6 @@ class CircleDrawView: UIView {
     var title: UILabel = {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
         label.textAlignment = .center
-        label.text = "Hi"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     } ()

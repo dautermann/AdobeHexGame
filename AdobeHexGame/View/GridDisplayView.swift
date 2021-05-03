@@ -13,7 +13,7 @@ import UIKit
 class GridDisplayView: UIView {
     /// IBOutletCollection!
     @IBOutlet var gridCircleView: [CircleDrawView]!
-    // more colors here than there will be triplets
+    /// more colors here than there will be sets of triplets
     var colors: [UIColor] = [.green, .blue, .orange, .cyan, .brown, .magenta, .red, .purple].shuffled()
     
     func updateGridDisplay(from grid: [HexCell]) {

@@ -39,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2519DD36263FA611004C622E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		257B8CE9263ECDA200A2EA31 /* GridDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridDisplayView.swift; sourceTree = "<group>"; };
 		257B8CFA263F838E00A2EA31 /* CircleDrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleDrawView.swift; sourceTree = "<group>"; };
 		25B88EA22639119B00F5F434 /* AdobeHexGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdobeHexGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -84,9 +85,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2519DD2E263FA30E004C622E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				25B88ED8263911D100F5F434 /* HexCell.swift */,
+				25B88EDD2639127600F5F434 /* HexGrid.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2519DD2F263FA33A004C622E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				257B8CFA263F838E00A2EA31 /* CircleDrawView.swift */,
+				257B8CE9263ECDA200A2EA31 /* GridDisplayView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		25B88E992639119B00F5F434 = {
 			isa = PBXGroup;
 			children = (
+				2519DD36263FA611004C622E /* README.md */,
 				25B88EA42639119B00F5F434 /* AdobeHexGame */,
 				25B88EBB2639119E00F5F434 /* AdobeHexGameTests */,
 				25B88EC62639119E00F5F434 /* AdobeHexGameUITests */,
@@ -108,16 +128,14 @@
 			isa = PBXGroup;
 			children = (
 				25B88EA52639119B00F5F434 /* AppDelegate.swift */,
-				257B8CFA263F838E00A2EA31 /* CircleDrawView.swift */,
+				2519DD2E263FA30E004C622E /* Model */,
+				2519DD2F263FA33A004C622E /* View */,
 				25B88EA72639119B00F5F434 /* SceneDelegate.swift */,
 				25B88EA92639119B00F5F434 /* ViewController.swift */,
 				25B88EAB2639119B00F5F434 /* Main.storyboard */,
 				25B88EAE2639119D00F5F434 /* Assets.xcassets */,
 				25B88EB02639119D00F5F434 /* LaunchScreen.storyboard */,
 				25B88EB32639119D00F5F434 /* Info.plist */,
-				257B8CE9263ECDA200A2EA31 /* GridDisplayView.swift */,
-				25B88ED8263911D100F5F434 /* HexCell.swift */,
-				25B88EDD2639127600F5F434 /* HexGrid.swift */,
 			);
 			path = AdobeHexGame;
 			sourceTree = "<group>";

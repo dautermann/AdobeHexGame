@@ -7,17 +7,25 @@
 
 import Foundation
 
+struct ColRow {
+    let col: Int
+    let row: Int
+}
+
 class HexCell: CustomStringConvertible {
     let col: Int
     let row: Int
     var value: Int = 0
+    /// there can be 6 possible triplet sets; 0 means unassigned
     var tripletIndex: Int = 0
     var adjacentCells: [HexCell]?
-    var zPlaced: Bool = false
+    /// used to randomly inspect a neighbor for the triplet (three circle set) we are hoping to reserve
     var randomAdjacentCells: [HexCell]? {
         return adjacentCells?.shuffled()
     }
 
+    /// this is why we need to be a CustomStringConvertible;
+    /// having a "description" is super handy!
     var description: String {
         return "<\(type(of: self)): column = \(col) row = \(row)>"
     }

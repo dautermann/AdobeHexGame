@@ -24,7 +24,7 @@ class ViewController: UIViewController {
         let randoms = CreateRandomXYZ()
         let grid = HexGrid(gridDisplayView: gridDisplayView)
         let tripletArray = grid.reserveTriplets()
-        grid.allocateXYZ(xyzArray: randoms.xyzs, into: tripletArray)
+        grid.allocateRandoms(with: randoms, into: tripletArray)
     }
 
     // Specify the orientation.
